@@ -1,0 +1,74 @@
+{% extends "formboard.html" %}  
+  
+{% block content %}  
+<p>Maintian On line Module:</p>
+  <div class="form-group">
+      <form action="http://192.168.1.5:8000/maintainonline/" method="POST">
+
+        <div>
+
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">客户端 <span class="required">*</span>
+
+        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" name="minions">
+
+        </div>
+        <div>
+
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">模块 <span class="required">*</span>
+
+        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" name="module">
+
+        </div>
+        <div>
+
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">脚本 <span class="required">*</span>
+
+        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" name="scripts">
+
+
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-success">执行任务</button>
+        </div>
+
+      </form>       
+  </div>
+  
+
+ <div class="panel">
+                        <a class="panel-heading" role="tab" id="headingOne1" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne">
+                          <h4 class="panel-title">Collapsible Group Item #1</h4>
+                        </a>
+                        <div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>任务ID</th>
+                                  <th>minons</th>
+                                  <th>command</th>
+                                  <th>运行结果</th>
+                                  <th>运行时间</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>{{ jid  }}</td>
+                                  <td>{{ minions }}</td>
+                                  <th>command</th>
+                                  <th>resut</th>
+                                  <td>time</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+</div>
+
+
+
+
+{% endblock %}  

@@ -1,0 +1,15 @@
+{% extends "base.html" %}  
+  
+{% block body %}  
+  <body class="login">
+    
+      <div class="login_wrapper">
+            <form action = '.' method="POST">
+                <table>
+                  {{ login.form.as_table }}
+                </table>
+                <a class="btn btn-default submit" href="">登录</a>
+            </form>
+      </div>
+  </body>       
+{% endblock %}
