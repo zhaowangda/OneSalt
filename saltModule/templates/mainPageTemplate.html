@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>OneSalt Go | </title>
 
     <!-- Bootstrap -->
     <link href="http://192.168.1.5:8000/static/mainpageTemplate/bootstrap.min.css" rel="stylesheet">
@@ -20,6 +20,8 @@
 
     <!-- Custom Theme Style -->
     <link href="http://192.168.1.5:8000/static/mainpageTemplate/custom.min.css" rel="stylesheet">
+    {% block head %}
+    {% endblock %}
   </head>
 
   <body class="nav-md footer_fixed">
@@ -28,7 +30,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>自动化运维平台</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -39,8 +41,8 @@
                 <img src="http://192.168.1.5:8000/static/images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <span>Welcome, Admin</span>
+                <h2>Jack Zhao</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -50,30 +52,30 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+                <h3>IT Auto</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-home"></i> 首页 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="index.html">Dashboard</a></li>
                       <li><a href="index2.html">Dashboard2</a></li>
                       <li><a href="index3.html">Dashboard3</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> 数据中心管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">General Form</a></li>
-                      <li><a href="form_advanced.html">Advanced Components</a></li>
-                      <li><a href="form_validation.html">Form Validation</a></li>
-                      <li><a href="form_wizards.html">Form Wizard</a></li>
-                      <li><a href="form_upload.html">Form Upload</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
+                      <li><a href="datacenterlist">数据中心</a></li>
+                      <li><a href="form_advanced.html">机房</a></li>
+                      <li><a href="form_validation.html">机架</a></li>
+                      <li><a href="form_wizards.html">资产</a></li>
+                      <li><a href="form_upload.html">报表</a></li>
+                      <li><a href="form_buttons.html">视图</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> 自动化 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">General Elements</a></li>
-                      <li><a href="media_gallery.html">Media Gallery</a></li>
-                      <li><a href="typography.html">Typography</a></li>
+                      <li><a href="general_elements.html">业务组管理</a></li>
+                      <li><a href="media_gallery.html">状态任务配置</a></li>
+                      <li><a href="/maintainonline">在线运维</a></li>
                       <li><a href="icons.html">Icons</a></li>
                       <li><a href="glyphicons.html">Glyphicons</a></li>
                       <li><a href="widgets.html">Widgets</a></li>
@@ -82,10 +84,15 @@
                       <li><a href="calendar.html">Calendar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-table"></i> 监控平台 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables.html">Tables</a></li>
-                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                      <li><a href="tables.html">主机列表</a></li>
+                      <li><a href="tables_dynamic.html">服务列表</a></li>
+                      <li><a href="tables_dynamic.html">主机组视图</a></li>
+                      <li><a href="tables_dynamic.html">服务组视图</a></li>
+                      <li><a href="tables_dynamic.html">联系人配置</a></li>
+                      <li><a href="tables_dynamic.html">报警媒介配置</a></li>
+                      <li><a href="tables_dynamic.html">报警记录</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
@@ -181,7 +188,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="http://192.168.1.5:8000/static/images/img.jpg" alt="">John Doe
+                    <img src="http://192.168.1.5:8000/static/images/img.jpg" alt="">Jack Zhao
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -269,22 +276,17 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
+<div class="right_col" role="main">
                 {% block content %}
                 {% endblock %}
-              </div>
-            </div>
-          </div>
-        </div>
+</div>
+             
         <!-- /page content -->
 
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by Colorlib. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+            IT Automation - Bootstrap Admin Template by Colorlib. More Templates  - Jack Zhao
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -14,6 +14,8 @@ class  user(models.Model):
 
     def __unicode__(self):
         return self.name
+#--------------------------------------------------------------
+#salt stack job tables
 
 class  jids(models.Model):
 	jid = models.CharField(max_length=255,null=False,unique=True)
@@ -37,5 +39,20 @@ class  salt_events(models.Model):
 	alter_time = models.DateField(auto_now_add=True)
 	master_id = models.CharField(max_length=255,null=False)
 
- 		
-
+#--------------------------------------------------------------
+#datacenter mgmt  tables	
+class  datacenters(models.Model):
+    #id BIGINT NOT NULL AUTO_INCREMENT
+	name = models.CharField(max_length=255,null=False)
+	address = models.CharField(max_length=255,null=False)
+	power1 = models.CharField(max_length=255,null=False) # 电路1
+	power2 = models.CharField(max_length=255,null=True) # 电路2
+	TEMPMin = models.IntegerField(default=18,null=False) #温度：单位摄氏度
+	TEMPMax = models.IntegerField(default=22,null=False) #温度：单位摄氏度
+	HRMin = models.IntegerField(default=30,null=False)   #相对湿度最小值%relative humidity
+	HRMax = models.IntegerField(default=70,null=False)   #相对湿度最小值%relative humidity 
+	supplier = models.CharField(max_length=255,null=True) #提供商
+	MRNumber = models.IntegerField(default=0,null=True) #机房数量
+	rackNumber = models.IntegerField(default=0,null=True) #机架数量
+	state = models.IntegerField(default=0,null=False)    #使用状态
+	remark = models.TextField(null=True)    #备注信息

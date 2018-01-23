@@ -61,10 +61,33 @@ def login(request):
 
 
 def index(request):
-    t = loader.get_template('index.html')
+    t = loader.get_template('mainPageTemplate.html')
     c = Context({"name":"test"})
     c = {}
     return HttpResponse(t.render(c))
+
+
+##----------------------------------------------------
+#datacenter module
+def datacenterList(request):
+    t = loader.get_template('datacenterlist.html')
+    c = Context({"name":"test"})
+    allDatacenter = models.datacenters.objects.all()
+    c = {"allDatacenter":allDatacenter}
+    return HttpResponse(t.render(c))
+
+
+
+def machineRoomList(request):
+    t = loader.get_template('machineRoomList.html')
+    c = Context({"name":"test"})
+    allDatacenter = models.datacenters.objects.all()
+    c = {"allDatacenter":allDatacenter}
+    return HttpResponse(t.render(c))
+
+#-----------------------------------------------------
+
+
 
 def formboard(request):
     t = loader.get_template('formboard.html')
