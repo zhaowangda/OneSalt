@@ -33,7 +33,7 @@ def login(request):
                     response = redirect('/')
                     request.session['username'] = user.name
                     request.session['usermail'] = user.email
-                    return redirect('/maintainonline/')
+                    return redirect('/maintainonline')
                 else:
                     message = "账号或密码错误"
             except Exception, e:
@@ -81,8 +81,8 @@ def datacenterList(request):
 def machineRoomList(request):
     t = loader.get_template('machineRoomList.html')
     c = Context({"name":"test"})
-    allDatacenter = models.datacenters.objects.all()
-    c = {"allDatacenter":allDatacenter}
+    allMachineRoom = models.machinerooms.objects.all()
+    c = {"allMachineRoom":allMachineRoom}
     return HttpResponse(t.render(c))
 
 #-----------------------------------------------------

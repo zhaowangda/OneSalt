@@ -7,16 +7,11 @@
    	{% endif%} 
       <div>
             <form action = '.' method="POST">
-                <table>
-			<input type="text" name="username" value="" placeholder="请输入您的账号" />
-			<hr />
-			<input type="password" name="password" value="" />
-                </table>
-                <a class="btn btn-default submit" href="">登录</a>
+
 		<table>
 		{{ login_form.as_table }}
 		</table>
-		<input type="submit" name="submit">submit</input>
+		<input type="submit" class="btn btn-default submit" name="submit">submit</input>
             </form>
       </div>
   </body>       
