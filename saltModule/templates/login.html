@@ -1,14 +1,22 @@
-{% extends "base.html" %}  
+{% extends "base.html" %}
   
-{% block body %}  
+{% block body %} 
   <body class="login">
-    
-      <div class="login_wrapper">
+	{% if message %}
+	{{ message }}
+   	{% endif%} 
+      <div>
             <form action = '.' method="POST">
                 <table>
-                  {{ login.form.as_table }}
+			<input type="text" name="username" value="" placeholder="请输入您的账号" />
+			<hr />
+			<input type="password" name="password" value="" />
                 </table>
                 <a class="btn btn-default submit" href="">登录</a>
+		<table>
+		{{ login_form.as_table }}
+		</table>
+		<input type="submit" name="submit">submit</input>
             </form>
       </div>
   </body>       

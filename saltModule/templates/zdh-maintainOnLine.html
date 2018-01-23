@@ -54,14 +54,16 @@
                                 </tr>
                               </thead>
                               <tbody>
+				{% for key in result %}
                                 <tr>
-                                  <th scope="row">1</th>
-                                  <td>{{ jid  }}</td>
-                                  <td>{{ minions }}</td>
-                                  <th>command</th>
-                                  <th>resut</th>
-                                  <td>time</td>
+                                  <th scope="row">{{ jid }}</th>
+                                  <td scope="row">{{ module }}</td>
+                                  <td scope="row">{{ minions }}</td>
+                                  <td scope="row">{{ scripts }}</td>
+                                  <td scope="row">{{ result }}</th>
+                                  <td scope="row">time</td>
                                 </tr>
+				{% endfor %}
                               </tbody>
                             </table>
                           </div>

@@ -16,3 +16,7 @@ def runningCommand(hosts,module,scripts):
     return ret
 
 
+def runningCommandOnline(hosts,module,scripts):
+    saltObj=salt.client.LocalClient()
+    ret=saltObj.cmd(hosts,module,[scripts,])
+    return ret
