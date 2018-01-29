@@ -134,8 +134,8 @@ def addDatacenter(request):
 #-------
 #machineRoom module
 
-def machineRoomList(request):
-    t = loader.get_template('machineRoomList.html')
+def machineroomList(request):
+    t = loader.get_template('machineroomlist.html')
     c = Context({"name":"test"})
     allMachineRoom = models.machinerooms.objects.all()
     c = {"allMachineRoom":allMachineRoom}
@@ -143,9 +143,46 @@ def machineRoomList(request):
 
 
 
+def machineroomDetail(request):
+    t = loader.get_template('machineroomdetail.html')
+    ID = request.GET['machineroomid']
+    machineroom = models.machinerooms.objects.get(id=ID)
+    c = {"machineroom":machineroom}
+    return HttpResponse(t.render(c))
 
 
+def machineroomDelete(request):
+    dtID = request.GET['machineroomid']
+    models.machinerooms.objects.filter(id=dtID).delete()
+    return redirect("/machineroomlist")
 
+def machineroomModify(request):
+    ID = request.GET['machineroomid']
+    machineroom = models.machinerooms.objects.get(id=ID)
+    machineroom.name = request.POST['name'].strip()
+    machineroom.userDefineName = request.POST['userDefineName'].strip()
+    machineroom.state = request.POST['state']
+    machineroom.capacityUnit = request.POST['capacityUnit']
+    machineroom.rackNumber = request.POST['rackNumber']
+    machineroom.power1 = request.POST['power1']
+    machineroom.power2 = request.POST['power2']
+    machineroom.TEMPMin = request.POST['TEMPMin']
+    machineroom.TEMPMax = request.POST['TEMPMax']
+    machineroom.HRMin = request.POST['HRMin']
+    machineroom.HRMax = request.POST['HRMax']
+    machineroom.remark = request.POST['remark'].strip()
+    machineroom.save()
+    return redirect("/machineroomlist")
+
+def machineroomForm(request):
+    t = loader.get_template('machineroomFormAdd.html')
+    c = Context({"name":"test"})
+    allDatacenter = models.datacenters.objects.all()
+    c = {"allDatacenter":allDatacenter}
+    return HttpResponse(t.render(c))
+
+def machineroomAdd(request):
+    pass
 
 
 #-----------------------------------------------------

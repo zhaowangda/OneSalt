@@ -35,6 +35,11 @@ urlpatterns = [
     url(r'adddatacenterform', views.addDatacenterForm),
     url(r'adddatacenter', views.addDatacenter),
 
-    url(r'machineroomlist', views.machineRoomList),
+    url(r'machineroomlist', views.machineroomList),
+    url(r'machineroomdelete', views.machineroomDelete),
+    url(r'machineroomdetail', views.machineroomDetail),
+    url(r'machineroomform', views.machineroomForm),
+    url(r'machineroomadd', views.machineroomAdd),
+    url(r'machineroommodify', views.machineroomModify),
 ]
 

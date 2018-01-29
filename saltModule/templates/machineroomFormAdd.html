@@ -45,7 +45,7 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="/machineroomform">添加机房</a>
+                          <li><a href="/machineroom/add">添加机房</a>
                           </li>
                           <li><a href="#">Settings 2</a>
                           </li>
@@ -61,74 +61,61 @@
                       DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
                     </p>
 -->
+                  <form method="POST" action="/machineroomadd">
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <!--<th>机架ID</th>-->
-                          <th>所属数据中心</th>
-                          <th>机架SN</th>
-                          <th>机架名称</th>
-                          <th>用户自定义名称</th>
-                          <th>P1功率</th>
-                          <th>P2功率</th>
-                          <th>温度标准值</th>
-                          <th>湿度标准值</th>
-                          <th>机架数量</th>
-                          <th>总U位</th>
-                          <th>状态</th>
-                          <th>备注</th>
-                          <th>删除</th>
-                          <th>修改</th>
+                          <th>所属数据中心</th><td>
+                            <select>
+                              {% for datacenter in allDatacenter %}
+                              <option value="{{ datacenter.id }}">{{ datacenter.name }}</option>
+                              {% endfor %}
+                            </select>
+                          </td>
+
+                          <th>所属数据中心</th><td></td>
+                          <th>所属数据中心</th><td></td>
+                        </tr>
+                        <tr>
+                          <th>机架SN</th><td><input type="text" name="id" value='{{ machineroom.sn }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>机架名称</th><td><input type="text"  name="name" value='{{ machineroom.name }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>用户自定义名称</th><td><input type="text"  name="userDefineName" value='{{ machineroom.userDefineName }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>P1功率</th><td><input type="text"  name="power1" value='{{ machineroom.power1 }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>P2功率</th><td><input type="text"  name="power2" value='{{ machineroom.power2 }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>温度范围:</th><td><input type="text"  name="TEMPMin" value='{{ machineroom.TEMPMin }}' />-<input type="text" name="TEMPMax" value='{{ machineroom.TEMPMax }}' />单位：°度</td>
+                        </tr>
+                        <tr>
+                          <th>湿度标准值:</th><td><input type="text"  name="HRMin" value='{{ machineroom.HRMin }}' />-<input type="text" name="HRMax" value='{{ machineroom.HRMax }}' />单位：%</td>
+                        </tr>
+                        <tr>
+                          <th>机架数量</th><td><input type="text"  name="rackNumber" value='{{ machineroom.rackNumber }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>总U位</th><td><input type="text"  name="capacityUnit" value='{{ machineroom.capacityUnit }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>状态</th><td><input type="text"  name="state" value='{{ machineroom.state }}' /></td>
+            
+                        </tr>
+                        <tr>
+                          <th>备注</th><td><input type="text"  name="remark" value='{{ machineroom.remark }}' /></td>
                         </tr>
                       </thead>
-
-
-                      <tbody>
-<!--                      
-                        <tr>
-                          <td>001</td>
-                          <td>无锡数据中心01</td>
-                          <td>使用中</td>
-                          <td>无锡联通</td>
-                          <td>5</td>
-                          <td>300</td>
-                          <td>110KVA</td>
-                          <td>110KVA</td>
-                          <td>20°</td>
-                          <td>40%-60%</td>
-                          <td>测试数据</td>
-                          <td><inpute type="button" action='' name="delete">删除</inpute></td>
-                          <td><inpute type="button" action='' name="modify">修改</inpute></td>
-                        </tr>
--->                        
-                        {% for machineRoom in allMachineRoom %}
-                        <tr>
-                          <!--<td>{{ machineRoom.id }}</td>-->
-                          <td>外键数据中心名称</td>
-                          <td>{{ machineRoom.sn }}</td>
-                          <td>{{ machineRoom.name }}</td>
-                          <td>{{ machineRoom.userDefineName }}</td>
-                          <td>{{ machineRoom.power1 }}</td>
-                          <td>{{ machineRoom.power2 }}</td>
-                          <td>{{ machineRoom.TEMPMin }}°-{{ machineRoom.TEMPMax }}°</td>
-                          <td>{{ machineRoom.HRMin }}%-{{ machineRoom.HRMax }}%</td>
-                          <td>{{ machineRoom.rackNumber }}</td>
-                          <td>{{ machineRoom.capacityUnit }}</td>
-
-                          {% if machineRoom.state == 0 %}
-                            <td bgcolor="#A2CD5A">使用中</td>
-                          {% else %}
-                            <td bgcolor="#CD5C5C">维护中</td>
-                          {% endif %}
-
-                          <td>{{ machineRoom.remark }}</td>
-                          <td><button type="button"  onclick="javascrtpt:window.location.href='/machineroomdelete?machineroomid={{machineRoom.id}}'">删除</button></td>
-                          <td><button type="button"  onclick="javascrtpt:window.location.href='/machineroomdetail?machineroomid={{machineRoom.id}}'">修改</button></td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
                     </table>
-          
+                  <button  type="reset" >重置</button>
+                  <button type="submit" >提交</button>
+                </form>
           
                   </div>
                 </div>
