@@ -29,7 +29,12 @@ urlpatterns = [
     url(r'^login', views.login),
 #    url(r'^', views.index),
     url(r'datacenterlist', views.datacenterList),
+    url(r'datacenterinfo', views.datacenterInfo),
     url(r'deldatacenter', views.delDatacenter),
+    url(r'modifydatacenter', views.modifyDatacenter),
+    url(r'adddatacenterform', views.addDatacenterForm),
+    url(r'adddatacenter', views.addDatacenter),
+
     url(r'machineroomlist', views.machineRoomList),
 ]
 

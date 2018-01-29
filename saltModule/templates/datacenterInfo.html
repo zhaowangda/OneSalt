@@ -45,7 +45,7 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="/adddatacenterform">增加数据中心</a>
+                          <li><a href="#">Settings 1</a>
                           </li>
                           <li><a href="#">Settings 2</a>
                           </li>
@@ -61,53 +61,53 @@
                       DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
                     </p>
 -->
-                    <table id="datatable" class="table table-striped table-bordered">
+                <form method="POST" action="/modifydatacenter">
+                    <table id="datatable"   class="table table-striped table-bordered" >
                       <thead>
                         <tr>
-                          <th>数据中心id</th>
-                          <th>数据中心名称</th>
-                          <th>状态</th>
-                          <th>供应商</th>
-                          <th>机房容量</th>
-                          <th>机架容量</th>
-                          <th>P1功率</th>
-                          <th>P2功率</th>
-                          <th>温度标准值</th>
-                          <th>湿度标准值</th>
-                          <th>备注</th>
-                          <th>删除</th>
-                          <th>修改</th>
+                          <th>数据中心id:</th><td><input type="text" readonly="readonly" name="id" value='{{ datacenter.id }}' /></td>
+                          <th>数据中心名称:</th><td><input type="text" name="" value='{{ datacenter.name }}' /></td>
+                          <th>供应商:</th><td><input type="text" name="" value='{{ datacenter.supplier }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>数据中心名称:</th><td><input type="text" name="name" value='{{ datacenter.name }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>状态:</th><td><input type="text" name="state" value='{{ datacenter.state }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>供应商:</th><td><input type="text" name="supplier" value='{{ datacenter.supplier }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>机房容量:</th><td><input type="text" name="MRNumber" value='{{ datacenter.MRNumber }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>机架容量:</th><td><input type="text" name="rackNumber" value='{{ datacenter.rackNumber }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>P1功率:</th><td><input type="text" name="power1" value='{{ datacenter.power1 }}' /></td>
+                        </tr>
+                        <tr>
+                          <th>P2功率:</th><td><input type="text" name="power2" value='{{ datacenter.power2 }}' /></td>
+                          </tr>
+                        <tr>
+                          <th>温度范围:</th><td><input type="text" name="TEMPMin" value='{{ datacenter.TEMPMin }}' />-<input type="text" name="TEMPMax" value='{{ datacenter.TEMPMax }}' />单位：°度</td>
+                        </tr>
+                        <tr>
+                          <th>湿度标准值:</th><td><input type="text" name="HRMin" value='{{ datacenter.HRMin }}' />-<input type="text" name="HRMax" value='{{ datacenter.HRMax }}' />单位：%</td>
+                        </tr>
+                        <tr>
+                          <th>备注</th><td><input type="text" name="remark" value='{{ datacenter.remark }}' /></td>
                         </tr>
                       </thead>
 
-
+<!--
                       <tbody>
-<!--                      
-                        <tr>
-                          <td>001</td>
-                          <td>无锡数据中心01</td>
-                          <td>使用中</td>
-                          <td>无锡联通</td>
-                          <td>5</td>
-                          <td>300</td>
-                          <td>110KVA</td>
-                          <td>110KVA</td>
-                          <td>20°</td>
-                          <td>40%-60%</td>
-                          <td>测试数据</td>
-                          <td><inpute type="button" action='' name="delete">删除</inpute></td>
-                          <td><inpute type="button" action='' name="modify">修改</inpute></td>
-                        </tr>
--->                        
-                        {% for datacenter in allDatacenter %}
+                      
                         <tr>
                           <td>{{ datacenter.id }}</td>
                           <td>{{ datacenter.name }}</td>
-                          {% if datacenter.state == 0 %}
-                            <td bgcolor="#A2CD5A">使用中</td>
-                          {% else %}
-                            <td bgcolor="#CD5C5C">维护中</td>
-                          {% endif %}
+                          <td>{{ datacenter.state }}</td>
                           <td>{{ datacenter.supplier }}</td>
                           <td>{{ datacenter.MRNumber }}</td>
                           <td>{{ datacenter.rackNumber }}</td>
@@ -116,13 +116,14 @@
                           <td>{{ datacenter.TEMPMin }}°-{{ datacenter.TEMPMax }}°</td>
                           <td>{{ datacenter.HRMin }}%-{{ datacenter.HRMax }}%</td>
                           <td>{{ datacenter.remark }}</td>
-                          <td><button type="button"  onclick="javascrtpt:window.location.href='/deldatacenter?datacenterID={{datacenter.id}}'">删除</button></td>
-                          <td><button type="button"  onclick="javascrtpt:window.location.href='/datacenterinfo?datacenterID={{datacenter.id}}'">修改</button></td>
                         </tr>
-                        {% endfor %}
+
                       </tbody>
+-->                      
                     </table>
-          
+                  <button  type="reset" >重置</button>
+                  <button type="submit" >提交</button>
+                </form>         
           
                   </div>
                 </div>

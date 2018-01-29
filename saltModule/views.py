@@ -76,7 +76,63 @@ def datacenterList(request):
     c = {"allDatacenter":allDatacenter}
     return HttpResponse(t.render(c))
 
+def datacenterInfo(request):
+    t = loader.get_template('datacenterInfo.html')
+    dtID = request.GET['datacenterID']
+    datacenter = models.datacenters.objects.get(id=dtID)
+    c = {"datacenter":datacenter}
+    return HttpResponse(t.render(c))
 
+
+
+def delDatacenter(request):
+    dtID = request.GET['datacenterID']
+    models.datacenters.objects.filter(id=dtID).delete()
+    return redirect("/datacenterlist")
+
+def modifyDatacenter(request):
+    dtID = request.POST['id']
+    datacenter = models.datacenters.objects.get(id=dtID)
+    datacenter.name = request.POST['name'].strip()
+    datacenter.state = request.POST['state']
+    datacenter.supplier = request.POST['supplier'].strip()
+    datacenter.MRNumber = request.POST['MRNumber']
+    datacenter.rackNumber = request.POST['rackNumber']
+    datacenter.power1 = request.POST['power1']
+    datacenter.power2 = request.POST['power2']
+    datacenter.TEMPMin = request.POST['TEMPMin']
+    datacenter.TEMPMax = request.POST['TEMPMax']
+    datacenter.HRMin = request.POST['HRMin']
+    datacenter.HRMax = request.POST['HRMax']
+    datacenter.remark = request.POST['remark'].strip()
+    datacenter.save()
+    return redirect("/datacenterlist")
+
+def addDatacenterForm(request):
+    t = loader.get_template('addDatacenterForm.html')
+    c = {}
+    return HttpResponse(t.render(c))
+
+def addDatacenter(request):
+    #dtID = request.POST['id']
+    datacenter = models.datacenters()
+    datacenter.name = request.POST['name'].strip()
+    datacenter.state = request.POST['state']
+    datacenter.supplier = request.POST['supplier'].strip()
+    datacenter.MRNumber = request.POST['MRNumber']
+    datacenter.rackNumber = request.POST['rackNumber']
+    datacenter.power1 = request.POST['power1']
+    datacenter.power2 = request.POST['power2']
+    datacenter.TEMPMin = request.POST['TEMPMin']
+    datacenter.TEMPMax = request.POST['TEMPMax']
+    datacenter.HRMin = request.POST['HRMin']
+    datacenter.HRMax = request.POST['HRMax']
+    datacenter.remark = request.POST['remark'].strip()
+    datacenter.save()
+    return redirect("/datacenterlist")
+
+#-------
+#machineRoom module
 
 def machineRoomList(request):
     t = loader.get_template('machineRoomList.html')
@@ -84,6 +140,13 @@ def machineRoomList(request):
     allMachineRoom = models.machinerooms.objects.all()
     c = {"allMachineRoom":allMachineRoom}
     return HttpResponse(t.render(c))
+
+
+
+
+
+
+
 
 #-----------------------------------------------------
 
