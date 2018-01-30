@@ -18,6 +18,10 @@ from django.template import RequestContext
 
 from django.shortcuts import redirect
 import models
+import json
+from django.core import serializers
+from django.forms.models import model_to_dict
+
 # Create your views here.
 
 
@@ -201,6 +205,100 @@ def machineroomAdd(request):
     machineroom.remark = request.POST['remark'].strip()
     machineroom.save()
     return redirect("/machineroomlist")
+
+
+#-------
+#racks module
+
+def rackList(request):
+    t = loader.get_template('racklist.html')
+    c = Context({"name":"test"})
+    racks = models.racks.objects.all()
+    c = {"racks":racks}
+    return HttpResponse(t.render(c))
+
+
+def rackDetail(request):
+    t = loader.get_template('rackdetail.html')
+    ID = request.GET['id']
+    rack = models.racks.objects.get(id=ID)
+    c = {"rack":rack}
+    return HttpResponse(t.render(c))
+
+def rackAddForm(request):
+
+    t = loader.get_template('rackAddForm.html')
+    allDatacenter = models.datacenters.objects.all()
+    c = {"allDatacenter":allDatacenter}
+    return HttpResponse(t.render(c))
+
+def rackAdd(request):
+    rack = models.racks()
+    rack.sn = request.POST['sn'].strip()
+    rack.name = request.POST['name'].strip()
+    rack.userDefineName = request.POST['userDefineName'].strip()
+    rack.state = request.POST['state']
+    rack.capacityUnit = request.POST['capacityUnit']
+    rack.machineRoomID = models.machinerooms.objects.get(id=request.POST['machineroom'])
+
+    rack.power1 = request.POST['power1']
+    rack.power2 = request.POST['power2']
+    rack.TEMPMin = request.POST['TEMPMin']
+    rack.TEMPMax = request.POST['TEMPMax']
+    rack.HRMin = request.POST['HRMin']
+    rack.HRMax = request.POST['HRMax']
+    rack.remark = request.POST['remark'].strip()
+    rack.save()
+    return redirect("/racklist")
+
+def rackModify(request):
+    ID = request.GET['id']
+    rack = models.racks.objects.get(id=ID)
+    #rack.sn = request.POST['sn'].strip()
+    #rack.name = request.POST['name'].strip()
+    rack.userDefineName = request.POST['userDefineName'].strip()
+    rack.state = request.POST['state']
+    rack.capacityUnit = request.POST['capacityUnit']
+
+    rack.power1 = request.POST['power1']
+    rack.power2 = request.POST['power2']
+    rack.TEMPMin = request.POST['TEMPMin']
+    rack.TEMPMax = request.POST['TEMPMax']
+    rack.HRMin = request.POST['HRMin']
+    rack.HRMax = request.POST['HRMax']
+    rack.remark = request.POST['remark'].strip()
+    rack.save()
+    return redirect("/racklist")
+
+def rackDelete(request):
+    ID = request.GET['id']
+    models.racks.objects.filter(id=ID).delete()
+    return redirect("/racklist")
+
+
+#------------------------------
+# ajax Get machineRooms from datacenter
+def getMachineRoomsFromDatacenterID(request):
+    datacenterID = request.GET['id']
+    machineroomlist = models.machinerooms.objects.filter(datacenterid=datacenterID)
+    
+    data = {}
+    for  machineroom in machineroomlist:
+        data[machineroom.id] = machineroom.name +"-->"+machineroom.userDefineName
+    #
+    #print data
+    #data = json.dumps(model_to_dict(machineroomlist))
+    data = json.dumps(data)
+    return HttpResponse(data, content_type='application/json')
+
+
+def testAjax(request):
+    t = loader.get_template('testAjax.html')
+    allDatacenter = models.datacenters.objects.all()
+    c = {"allDatacenter":allDatacenter}
+    return HttpResponse(t.render(c))
+
+
 
 #-----------------------------------------------------
 

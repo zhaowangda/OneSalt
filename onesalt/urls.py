@@ -41,5 +41,20 @@ urlpatterns = [
     url(r'machineroomform', views.machineroomForm),
     url(r'machineroomadd', views.machineroomAdd),
     url(r'machineroommodify', views.machineroomModify),
+
+
+    url(r'racklist', views.rackList),
+    url(r'^rackaddform/$', views.rackAddForm),
+    url(r'^rackaddrecord/$', views.rackAdd),
+    url(r'rackdetail', views.rackDetail),
+    url(r'rackdelete', views.rackDelete),
+    url(r'rackmodify', views.rackModify),
+    #-----------------------------------------
+    #ajax
+    url(r'getmachineroomsfromdatacenterid', views.getMachineRoomsFromDatacenterID),
+
+    #test url ajax
+    url(r'testajax', views.testAjax),
+
 ]
 
