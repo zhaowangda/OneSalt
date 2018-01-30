@@ -104,7 +104,7 @@
                         {% for machineRoom in allMachineRoom %}
                         <tr>
                           <!--<td>{{ machineRoom.id }}</td>-->
-                          <td>外键数据中心名称</td>
+                          <td>{{ machineRoom.datacenterid.name }}</td>
                           <td>{{ machineRoom.sn }}</td>
                           <td>{{ machineRoom.name }}</td>
                           <td>{{ machineRoom.userDefineName }}</td>

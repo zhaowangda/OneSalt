@@ -182,8 +182,25 @@ def machineroomForm(request):
     return HttpResponse(t.render(c))
 
 def machineroomAdd(request):
-    pass
+    machineroom = models.machinerooms()
+    machineroom.name = request.POST['name'].strip()
+    machineroom.userDefineName = request.POST['userDefineName'].strip()
+    machineroom.sn = request.POST['sn']
+    machineroom.state = request.POST['state']
+    machineroom.capacityUnit = request.POST['capacityUnit']
+    machineroom.rackNumber = request.POST['rackNumber']
 
+    machineroom.power1 = request.POST['power1']
+    machineroom.power2 = request.POST['power2']
+    machineroom.TEMPMin = request.POST['TEMPMin']
+    machineroom.TEMPMax = request.POST['TEMPMax']
+    machineroom.HRMin = request.POST['HRMin']
+    machineroom.HRMax = request.POST['HRMax']
+    machineroom.datacenterid = models.datacenters.objects.get(id=request.POST['datacenterid'])
+
+    machineroom.remark = request.POST['remark'].strip()
+    machineroom.save()
+    return redirect("/machineroomlist")
 
 #-----------------------------------------------------
 

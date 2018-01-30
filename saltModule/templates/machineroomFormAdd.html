@@ -67,9 +67,9 @@
                         <tr>
                           <!--<th>机架ID</th>-->
                           <th>所属数据中心</th><td>
-                            <select>
+                            <select name="datacenterid" >
                               {% for datacenter in allDatacenter %}
-                              <option value="{{ datacenter.id }}">{{ datacenter.name }}</option>
+                              <option value="{{ datacenter.id }}" >{{ datacenter.name }}</option>
                               {% endfor %}
                             </select>
                           </td>
@@ -78,7 +78,7 @@
                           <th>所属数据中心</th><td></td>
                         </tr>
                         <tr>
-                          <th>机架SN</th><td><input type="text" name="id" value='{{ machineroom.sn }}' /></td>
+                          <th>机架SN</th><td><input type="text" name="sn" value='{{ machineroom.sn }}' /></td>
                         </tr>
                         <tr>
                           <th>机架名称</th><td><input type="text"  name="name" value='{{ machineroom.name }}' /></td>
